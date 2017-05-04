@@ -17,10 +17,10 @@ function place_code_theme($atts = [], $content = null)
     "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type='slideshow'",
     sanitize_text_field($atts['post'])
   ));
+  apply_slidejs($post[0]->ID);
   $list = get_post_meta($post[0]->ID, 'slideshowPost', true);
   ?>
     <div class="" style="position: relative;">
-      aaa
       <div id="slides" style="width: 300px;">
         <?php
           foreach ($list as $key) {
@@ -29,10 +29,8 @@ function place_code_theme($atts = [], $content = null)
           }
         ?>
       </div>
-      bbb
     </div>
   <?php
-  apply_slidejs($post[0]->ID);
 }
 
 function initSlideshowMenu() {
